@@ -2,19 +2,17 @@
 
 namespace src;
 
-use http\Exception\InvalidArgumentException;
-
 class Task2
 {
-    public function main(string $date): int
+    final public function main(string $date): int
     {
         $format = "d.m.Y";
-        $timed_date = strtotime($date);
+        $timed_date = date_create_from_format($format, $date);
 
-        if (date($format, $timed_date) === date($date)) {
-            return strtotime('today')->diff($timed_date)->days;
+        if (strtotime($date) === false) {
+            throw new \InvalidArgumentException("Wrong date format. Use: $format");
         }
 
-        throw new InvalidArgumentException("Wrong date format. Use: $format");
+        return date_diff(date_create_from_format($format, date($format)), $timed_date)->d;
     }
 }
