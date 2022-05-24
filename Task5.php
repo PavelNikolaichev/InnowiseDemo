@@ -17,12 +17,12 @@ class Task5
 
     final public function numberOfDigits(int $n): int
     {
-        $cursor = $n*3;
+        $cursor = $n * 3;
 
         while ($cursor > 0) {
             if ($this->getLen($cursor) === $n) {
                 if ($this->getLen($cursor - 1) !== $n) {
-                    return $this->getFibonacci($cursor+1);
+                    return $this->getFibonacci($cursor + 1);
                 }
 
                 $cursor--;
@@ -44,6 +44,7 @@ class Task5
     private function getFibonacci(int $n): int
     {
         $phi = (1 + sqrt(5)) / 2;
+
         return round($phi ** $n / sqrt(5));
     }
 }
