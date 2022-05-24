@@ -9,6 +9,7 @@ class Task4
         $delims = ['_', '-', ' '];
 
         $input = ucwords(str_replace($delims, ' ', $input), ' ');
+
         return str_replace(' ', '', $input);
     }
 }
