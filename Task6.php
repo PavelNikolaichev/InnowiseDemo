@@ -4,17 +4,11 @@ namespace src;
 
 class Task6
 {
-    final public function main(int $year, int $lastYear, int $month, int $lastMonth, string $day = 'Monday'): int
+    final public function main(int $year, int $lastYear, int $month, int $lastMonth, string $day = 'Monday'): array
     {
         $startdate = strtotime($year . '-' . $month . '-' . '01');
         $enddate = strtotime($lastYear . '-' . $lastMonth . '-' . '01');
-        $dates = $this->findMondays($day, $startdate, $enddate);
-
-        echo count($dates) . '<br>';
-
-        $this->printArray($dates);
-
-        return count($dates);
+        return $this->findMondays($day, $startdate, $enddate);
     }
 
     private function findMondays(string $day, ?int $startdate, ?int $enddate, array $dates = []): array
@@ -29,17 +23,5 @@ class Task6
             return $this->findMondays($day, strtotime("+1 month", $startdate), $enddate, $dates);
         }
         return $this->findMondays($day, strtotime("+1 month", $startdate), $enddate, $dates);
-    }
-
-
-    /**
-     * @param array $dates
-     * @return void
-     */
-    private function printArray(array $dates): void
-    {
-        foreach ($dates as $date) {
-            echo $date . '<br>';
-        }
     }
 }
