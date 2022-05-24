@@ -8,6 +8,7 @@ class Task6
     {
         $startdate = strtotime($year . '-' . $month . '-' . '01');
         $enddate = strtotime($lastYear . '-' . $lastMonth . '-' . '01');
+
         return $this->findMondays($day, $startdate, $enddate);
     }
 
@@ -19,8 +20,10 @@ class Task6
 
         if (date('l', $startdate) === $day) {
             $dates[] = date('d.m.Y', $startdate);
-            return $this->findMondays($day, strtotime("+1 month", $startdate), $enddate, $dates);
+
+            return $this->findMondays($day, strtotime('+1 month', $startdate), $enddate, $dates);
         }
-        return $this->findMondays($day, strtotime("+1 month", $startdate), $enddate, $dates);
+
+        return $this->findMondays($day, strtotime('+1 month', $startdate), $enddate, $dates);
     }
 }
