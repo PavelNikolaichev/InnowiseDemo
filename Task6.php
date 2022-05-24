@@ -13,8 +13,7 @@ class Task6
 
     private function findMondays(string $day, ?int $startdate, ?int $enddate, array $dates = []): array
     {
-        if($startdate > $enddate)
-        {
+        if ($startdate > $enddate) {
             return $dates;
         }
 
