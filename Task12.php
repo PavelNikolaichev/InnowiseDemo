@@ -11,10 +11,6 @@ class Task12
 
     public function __construct(int $a, int $b)
     {
-        if ($a < 0 || $b < 0) {
-            throw new InvalidArgumentException('Input values must be positive');
-        }
-
         $this->a = $a;
         $this->b = $b;
     }
@@ -63,12 +59,16 @@ class Task12
 
     final public function divide(): Task12
     {
+        if ($this->b <= 0) {
+            throw new InvalidArgumentException('Input values must be positive');
+        }
+
         return new Task12($this->a / $this->b, $this->b);
     }
 
     final public function divideBy(int $num): Task12
     {
-        if ($num < 0) {
+        if ($num <= 0) {
             throw new InvalidArgumentException('Input values must be positive');
         }
 
