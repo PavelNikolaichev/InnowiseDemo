@@ -15,7 +15,7 @@ class Task5
         return ceil($n * log10($phi) - log10(sqrt(5)) / 2);
     }
 
-    final public function numberOfDigits(int $n): int
+    final public function findByNumberOfDigits(int $n): string
     {
         $cursor = $n * 3;
 
@@ -36,15 +36,36 @@ class Task5
         return 0;
     }
 
-    final public function main(int $n): int
+    final public function main(int $n): string
     {
-        return $this->numberOfDigits($n);
+        if ($n < 1) {
+            throw new \InvalidArgumentException('Input must be a positive integer');
+        }
+
+        return sprintf('%0.0f', $this->findByNumberOfDigits($n));
     }
 
-    private function getFibonacci(int $n): int
+    private function getFibonacci(int $term): float
     {
-        $phi = (1 + sqrt(5)) / 2;
+        $initial = [[1, 1], [1, 0]];
+        $final = [[1, 1], [1, 0]];
 
-        return round($phi ** $n / sqrt(5));
+        if ($term === 0) {
+            return 0;
+        }
+
+        for ($i = 1; $i < $term ; $i++) {
+            $a = $final[0][0] * $initial[0][0] + $final[0][1] * $initial[1][0];
+            $b = $final[1][0] * $initial[0][0] + $final[1][1] * $initial[1][0];
+            $c = $final[0][0] * $initial[0][1] + $final[0][1] * $initial[1][1];
+            $d = $final[1][0] * $initial[0][1] + $final[1][1] * $initial[1][1];
+
+            $final[0][0] = $a;
+            $final[1][0] = $b;
+            $final[0][1] = $c;
+            $final[1][1] = $d;
+        }
+
+        return (string) $final[0][1];
     }
 }
