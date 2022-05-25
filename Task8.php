@@ -27,6 +27,6 @@ class Task8
             }
         }
 
-        return implode(PHP_EOL, $parsed);
+        return implode("\r\n", $parsed);
     }
 }
