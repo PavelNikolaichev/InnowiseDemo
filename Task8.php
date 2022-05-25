@@ -18,7 +18,7 @@ class Task8
                 if (is_int($value)) {
                     throw new InvalidArgumentException('Invalid value type');
                 }
-                $parsed .= $key . ': ' . $value . '\r\n';
+                $parsed .= $key . ': ' . $value . PHP_EOL;
             }
         }
 
