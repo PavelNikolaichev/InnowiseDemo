@@ -22,10 +22,6 @@ class Task12
 
     final public function addBy(int $num): Task12
     {
-        if ($num < 0) {
-            throw new InvalidArgumentException('Input values must be positive');
-        }
-
         return new Task12($this->a + $num, $this->b);
     }
 
@@ -36,10 +32,6 @@ class Task12
 
     final public function subtractBy(int $num): Task12
     {
-        if ($num < 0) {
-            throw new InvalidArgumentException('Input values must be positive');
-        }
-
         return new Task12($this->a - $num, $this->b);
     }
 
@@ -50,10 +42,6 @@ class Task12
 
     final public function multiplyBy(int $num): Task12
     {
-        if ($num < 0) {
-            throw new InvalidArgumentException('Input values must be positive');
-        }
-
         return new Task12($this->a * $num, $this->b);
     }
 
