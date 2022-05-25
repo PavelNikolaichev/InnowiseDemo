@@ -59,8 +59,8 @@ class Task12
 
     final public function divide(): Task12
     {
-        if ($this->b <= 0) {
-            throw new InvalidArgumentException('Input values must be positive');
+        if ($this->b === 0) {
+            throw new InvalidArgumentException('Input values must be non-zero');
         }
 
         return new Task12($this->a / $this->b, $this->b);
@@ -68,8 +68,8 @@ class Task12
 
     final public function divideBy(int $num): Task12
     {
-        if ($num <= 0) {
-            throw new InvalidArgumentException('Input values must be positive');
+        if ($num === 0) {
+            throw new InvalidArgumentException('Input values must be non-zero');
         }
 
         return new Task12($this->a / $num, $this->b);
