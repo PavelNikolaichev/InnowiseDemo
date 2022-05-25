@@ -2,10 +2,16 @@
 
 namespace src;
 
+use InvalidArgumentException;
+
 class Task10
 {
     final public function main(int $input): array
     {
+        if ($input < 0) {
+            throw new InvalidArgumentException('Input must be equal or greater than 0');
+        }
+
         $result = [$input];
 
         while ($input !== 1) {
