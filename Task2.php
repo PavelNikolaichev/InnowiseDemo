@@ -10,6 +10,11 @@ class Task2
     {
         $format = 'd-m-Y';
         $timed_date = date_create_from_format($format, $date);
+
+        if (date_get_last_errors()['warning_count'] > 0) {
+            throw new InvalidArgumentException('Incorrect date format');
+        }
+
         $curr_date = date_create_from_format($format, date($format));
 
         if ($timed_date === false) {
