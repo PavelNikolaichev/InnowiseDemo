@@ -9,10 +9,10 @@ class Task12
     private int $a;
     private int $b;
 
-    public function __construct(int $a, int $b)
+    public function __construct(?int $a, ?int $b)
     {
-        $this->a = $a;
-        $this->b = $b;
+        $this->a = $a ?? 0;
+        $this->b = $b ?? 0;
     }
 
     final public function add(): Task12
