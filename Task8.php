@@ -8,7 +8,7 @@ class Task8
 {
     final public function main(string $json): string
     {
-        $data = json_decode($json, true, 512, JSON_THROW_ON_ERROR | JSON_OBJECT_AS_ARRAY);
+        $data = json_decode($json, true, 512, JSON_OBJECT_AS_ARRAY);
 
         if (!is_array($data)) {
             throw new InvalidArgumentException('Invalid JSON');
