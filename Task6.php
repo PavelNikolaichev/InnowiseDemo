@@ -6,7 +6,7 @@ class Task6
 {
     final public function main(int $year, int $lastYear, int $month, int $lastMonth, string $day = 'Monday'): int
     {
-        if ($year < $lastYear) {
+        if ($year > $lastYear) {
             throw new \InvalidArgumentException('Year must be lower than last year');
         }
         if ($year < 0) {
