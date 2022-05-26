@@ -6,43 +6,69 @@ use InvalidArgumentException;
 
 class Task12
 {
-    private int $a;
+    public int $a;
     private int $b;
+    private ?int $c;
 
-    public function __construct(?int $a, ?int $b)
+    public function __construct(int $a, int $b, ?int $c = null)
     {
-        $this->a = $a ?? 0;
-        $this->b = $b ?? 0;
+        $this->a = $a;
+        $this->b = $b;
+        $this->c = $c;
     }
 
     final public function add(): Task12
     {
-        return new Task12($this->a + $this->b, $this->b);
+        if ($this->c) {
+            return new Task12($this->a, $this->b, $this->c + $this->b);
+        }
+
+        return new Task12($this->a, $this->b, $this->a + $this->b);
     }
 
     final public function addBy(int $num): Task12
     {
-        return new Task12($this->a + $num, $this->b);
+        if ($this->c) {
+            return new Task12($this->a, $this->b, $this->c + $num);
+        }
+
+        return new Task12($this->a, $this->b, $this->a + $num);
     }
 
     final public function subtract(): Task12
     {
-        return new Task12($this->a - $this->b, $this->b);
+        if ($this->c) {
+            return new Task12($this->a, $this->b, $this->c - $this->b);
+        }
+
+        return new Task12($this->a, $this->b, $this->a - $this->b);
     }
 
     final public function subtractBy(int $num): Task12
     {
-        return new Task12($this->a - $num, $this->b);
+        if ($this->c) {
+            return new Task12($this->a, $this->b, $this->c - $num);
+        }
+
+        return new Task12($this->a, $this->b, $this->a - $num);
     }
 
     final public function multiply(): Task12
     {
-        return new Task12($this->a * $this->b, $this->b);
+        if ($this->c) {
+            return new Task12($this->a, $this->b, $this->c * $this->b);
+        }
+
+        return new Task12($this->a, $this->b, $this->a * $this->b);
     }
 
     final public function multiplyBy(int $num): Task12
     {
-        return new Task12($this->a * $num, $this->b);
+        if ($this->c) {
+            return new Task12($this->a, $this->b, $this->c * $num);
+        }
+
+        return new Task12($this->a, $this->b, $this->a * $num);
     }
 
     final public function divide(): Task12
@@ -50,8 +76,11 @@ class Task12
         if ($this->b === 0) {
             throw new InvalidArgumentException('Input values must be non-zero');
         }
+        if ($this->c) {
+            return new Task12($this->a, $this->b, $this->c + $this->b);
+        }
 
-        return new Task12($this->a / $this->b, $this->b);
+        return new Task12($this->a, $this->b, $this->a / $this->b);
     }
 
     final public function divideBy(int $num): Task12
@@ -59,13 +88,16 @@ class Task12
         if ($num === 0) {
             throw new InvalidArgumentException('Input values must be non-zero');
         }
+        if ($this->c) {
+            return new Task12($this->a, $this->b, $this->c / $num);
+        }
 
-        return new Task12($this->a / $num, $this->b);
+        return new Task12($this->a, $this->b, $this->a / $num);
     }
 
     final public function __toString(): string
     {
-        return $this->a;
+        return $this->c;
     }
 
     final public function main(): void
